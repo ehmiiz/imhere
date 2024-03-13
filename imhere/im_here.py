@@ -34,7 +34,7 @@ def enable_app():
     global icon_enabled, tray_icon, im_here_thread
     icon_enabled = True
     im_here_thread = threading.Thread(target=im_here)
-    print("App was enabled.")
+    print("Enable was called.")
     update_tray_icon()
 
     # Start the im_here thread
@@ -44,13 +44,14 @@ def disable_app():
     # If the thread is running, it's being stopped. Updats the icon.
     global icon_enabled
     icon_enabled = False
-    print("App was disabled.")
+    print("Disable was called.")
     if im_here_thread.is_alive():
         im_here_thread.join()
     update_tray_icon()
 
 def exit_app(icon):
     # Exits the application
+    print("Exit was called.")
     icon.stop()
 
 def update_tray_icon():

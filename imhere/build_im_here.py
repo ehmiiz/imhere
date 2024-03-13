@@ -1,16 +1,16 @@
-import os
 import PyInstaller.__main__
+import os
 
-# Get the full path to the icons directory
-icons_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'icons'))
+icons_dir = "icons"
+disabled_icon = os.path.abspath(os.path.join(icons_dir, "disabled_icon.ico"))
+enabled_icon = os.path.abspath(os.path.join(icons_dir, "enabled_icon.ico"))
+icons_dir_abs_path = os.path.abspath(icons_dir)
 
-print(icons_dir)
-
-# Run PyInstaller
 PyInstaller.__main__.run([
     'im_here.py',
     '--onefile',
     '--noconsole',
-    f'--icon={icons_dir}',  # Use the icon file path
+    f'--icon={disabled_icon}',
+    f'--icon={enabled_icon}',
     '--name=imhere'
 ])
