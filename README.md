@@ -16,5 +16,5 @@ git clone git@github.com:ehmiiz/imhere.git
 Using PowerShell:
 
 ```powershell
-Start-Job {python.exe .\im_here.py}
+Start-Job {python.exe .imhere\im_here.py}
 ```
