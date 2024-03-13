@@ -1,9 +1,9 @@
-import pyautogui
-from PIL import Image
-from pystray import Icon as icon, Menu as menu, MenuItem as item
 import time
 import threading
 import os
+from pyautogui import move
+from PIL import Image
+from pystray import Icon as icon, Menu as menu, MenuItem as item
 
 # Global variable to track application status
 icon_enabled = False
@@ -17,13 +17,15 @@ def im_here():
     global icon_enabled
     while icon_enabled:
         # Wiggle the mouse!
-        pyautogui.move(0, 1)
-        pyautogui.move(0, -1)
-        time.sleep(5)
+        move(0, 1)
+        move(0, -1)
+        time.sleep(3)
 
 def enable_app():
-    global icon_enabled, tray_icon
+    # Create the thread for the im_here function
+    global icon_enabled, tray_icon, im_here_thread
     icon_enabled = True
+    im_here_thread = threading.Thread(target=im_here)
     print("App was enabled.")
     update_tray_icon()
 
@@ -34,6 +36,8 @@ def disable_app():
     global icon_enabled
     icon_enabled = False
     print("App was disabled.")
+    if im_here_thread.is_alive():
+        im_here_thread.join()
     update_tray_icon()
 
 def exit_app(icon):
@@ -53,8 +57,6 @@ def update_tray_icon():
     else:
         tray_icon.icon = Image.open(disabled_icon_path_absolute)
 
-# Create the thread for the im_here function
-im_here_thread = threading.Thread(target=im_here)
 
 def create_tray_icon():
     global tray_icon
