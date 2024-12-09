@@ -1,3 +1,4 @@
 /imhere/build/
 /imhere/dist/
 /imhere/*.spec
+.venv
