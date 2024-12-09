@@ -1,6 +1,6 @@
 # I'm here
 
-!['demo']"(im_here.gif)
+!['demo'](im_here.gif)
 
 Minimalistic system tray application for keeping your PC active while being AFK for Windows.
 
